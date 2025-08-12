@@ -11,6 +11,10 @@
 		"name": "Johnathon Selstad"
 	},
 	"license": "MIT",
+	"scripts": {
+		"start": "serve -l 8000",
+		"dev": "serve -l 8000"
+	},
 	"bundleDependencies": false,
 	"dependencies": {
 		"tweakpane": "^3.0.5",
@@ -19,5 +23,9 @@
 		"monaco-editor": "^0.20.0",
 		"opencascade.js": "^0.1.15",
 		"three": "^0.129.0"
+	},
+	"devDependencies": {
+		"serve": "^14.2.0",
+		"@playwright/test": "^0.1111.0"
 	}
 }
