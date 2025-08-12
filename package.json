@@ -12,8 +12,8 @@
 	},
 	"license": "MIT",
 	"scripts": {
-		"start": "serve -l 8000",
-		"dev": "serve -l 8000"
+		"start": "http-server -p 8000",
+		"dev": "http-server -p 8000"
 	},
 	"bundleDependencies": false,
 	"dependencies": {
@@ -25,7 +25,7 @@
 		"three": "^0.129.0"
 	},
 	"devDependencies": {
-		"serve": "^14.2.0",
+		"http-server": "^14.1.1",
 		"@playwright/test": "^0.1111.0"
 	}
 }
