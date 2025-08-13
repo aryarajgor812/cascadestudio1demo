@@ -1,75 +1,61 @@
-body {
-    background-color: #000000;
-    color: #EEEEEE;
-    font-family: Consolas, monospace;
-}
-
 /* Add a black background color to the top navigation */
 .topnav {
-  background-color: #000000;
+  background-color: #111;
   overflow: hidden;
-  border-bottom: 1px solid #08CB00;
 }
 
 /* Style the links inside the navigation bar */
 .topnav a, .topnav label {
   float: left;
-  color: #08CB00;
+  color: #f2f2f2;
   text-align: center;
   padding: 4px 16px;
   text-decoration: none;
   font-size: 14px;
-  font-family: Consolas, monospace;
-  text-shadow: 0 0 5px #08CB00;
+  font-family: Consolas;
 }
 
 /* Change the color of links on hover */
 .topnav a:hover, .topnav label:hover {
-  background-color: #08CB00;
-  color: #000000;
-  text-shadow: none;
+  background-color: #aaa;
+  color: black;
 }
 
 /* Add a color to the active/current link */
 .topnav a.active, label.active {
-  background-color: #08CB00;
-  color: #000000;
+  background-color: #4CAF50;
+  color: white;
 }
 .centered {
   position: fixed; top: 10%; left: 25%; z-index: 1000;
   width: 50%; height: 80%;
-  background: #000000; color: #EEEEEE;
-  border: 1px solid #08CB00;
+  background: rgb(19, 19, 19); color: white;
   overflow: auto;
 }
 
 /* TweakPane theme */
 :root {
-  --tp-font-family: Consolas, monospace;
-  --tp-base-background-color: #253900;
-  --tp-button-background-color: #08CB00;
-  --tp-button-background-color-active: #253900;
-  --tp-button-background-color-focus: #08CB00;
-  --tp-button-background-color-hover: #08CB00;
-  --tp-button-foreground-color: #000000;
-  --tp-label-foreground-color: #EEEEEE;
-  --tp-input-background-color: #253900;
-  --tp-input-foreground-color: #EEEEEE;
+  --tp-font-family: Arial, sans-serif;
+  --tp-base-background-color: #2e2e2e;
+  --tp-button-background-color: hsl(0, 0%, 25%);
+  --tp-button-background-color-active: hsl(0, 0%, 40%);
+  --tp-button-background-color-focus: hsl(0, 0%, 35%);
+  --tp-button-background-color-hover: hsl(0, 0%, 30%);
+  --tp-button-foreground-color: #eeeeee;
+  --tp-label-foreground-color: #aeb5b8;
 }
 .gui-panel {
   position: absolute;
   right: 0;
   max-height: 100%;
   overflow-y: auto;
-  border: 1px solid #08CB00;
-  background-color: #000000;
 }
 .gui-panel::-webkit-scrollbar {
   width: 10px;
-  background: #000000;
+  background: var(--tp-base-background-color);
 }
 .gui-panel::-webkit-scrollbar-thumb {
-  background: #08CB00;
+  background: #777;
 }
 .tp-rotv {
   text-shadow: 1px 1px #000;
@@ -83,27 +69,25 @@ body {
     top: 50px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #000000;
+    background-color: #2a2a2a;
     padding: 10px;
-    border-radius: 0;
-    border: 1px solid #08CB00;
-    box-shadow: 0 0 15px #08CB00;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
     z-index: 2000;
     display: none; /* Initially hidden */
 }
 
 #ai-prompt-input {
     width: 600px;
-    background-color: #253900;
-    border: 1px solid #08CB00;
-    color: #EEEEEE;
+    background-color: #3c3c3c;
+    border: 1px solid #555;
+    color: #f1f1f1;
     padding: 8px;
-    border-radius: 0;
-    font-family: Consolas, monospace;
+    border-radius: 3px;
+    font-family: 'Roboto', sans-serif;
 }
 
 #ai-prompt-input:focus {
     outline: none;
-    border-color: #08CB00;
-    box-shadow: 0 0 10px #08CB00;
+    border-color: #007acc;
 }
