@@ -63,3 +63,31 @@
 .tp-rotv button {
   text-shadow: inherit;
 }
+
+#ai-prompt-container {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #2a2a2a;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    display: none; /* Initially hidden */
+}
+
+#ai-prompt-input {
+    width: 600px;
+    background-color: #3c3c3c;
+    border: 1px solid #555;
+    color: #f1f1f1;
+    padding: 8px;
+    border-radius: 3px;
+    font-family: 'Roboto', sans-serif;
+}
+
+#ai-prompt-input:focus {
+    outline: none;
+    border-color: #007acc;
+}

@@ -78,6 +78,9 @@
             <a href="#" title="Clears the external step/iges/stl files stored in the project." onmouseup="clearExternalFiles();">Clear Imported Files</a>
         </div>
         <div id="appbody" style="height:auto">
+            <div id="ai-prompt-container" style="display: none;">
+                <input type="text" id="ai-prompt-input" placeholder="Enter your prompt and press Enter...">
+            </div>
             <link data-name="vs/editor/editor.main" rel="stylesheet" href="./node_modules/monaco-editor/min/vs/editor/editor.main.css">
             <script>var require = { paths: { 'vs': 'node_modules/monaco-editor/min/vs' } };</script>
             <script type="text/javascript" src="./node_modules/monaco-editor/min/vs/loader.js"></script>
