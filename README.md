@@ -16,7 +16,7 @@
 
 ## A Full Live-Scripted CAD Kernel and IDE in the Browser.
 
-Use code to create 3D Models with features ranging from simple primitives + CSG to complex revolves, sweeps, and fillets.  Cascade Studio exposes the full power of the [OpenCascade](https://github.com/Open-Cascade-SAS/OCCT) kernel, while providing a concise standard library for simple operations.
+Use code to create 3D Models with features ranging from simple primitives + CSG to complex revolves, sweeps, and fillets.  AICAD exposes the full power of the [OpenCascade](https://github.com/Open-Cascade-SAS/OCCT) kernel, while providing a concise standard library for simple operations.
 
 Save your completed models to .step, .stl. or .obj, or copy the url and share it with the community.
 
@@ -39,7 +39,7 @@ Save your completed models to .step, .stl. or .obj, or copy the url and share it
   <img title="Import and export .STL files and work with them like normal geometry!"src="./icon/ImportSTL.gif"    height="192">
   <img title="Import and export .STEP files from other CAD Applications!"src="./icon/ImportSTEP.gif"              height="192">
   <a title="ALPHA: Augment your models with graphical gizmos to get the best of both worlds!" href="https://zalo.github.io/CascadeStudio/?code=fZLBahsxEIbvforfOWlhnbXjuKQNpRi3TQs%2BhNiQwNKDVp71ishSkOQ0Tum7d7QbL0kL1UHSaGb%2BT5pRUWC%2BvP42%2F4C1lzbUzu9wpZ93DmsKEStFlgZFgXVD%2F0TogBC1MdAW0mJuHhqJVZSRhinle0QjA6yLqIgsIgvSpgs%2BoPLuZyCPah%2BxaLzbEcTFLGPfBl%2B1p9o9wVncarvhwCFEciipGm23nEzyPkDHYTZ4QSm%2BQXWAOijDkMiK%2B22DR%2Bm12wfs3IYCHrXELUT7DiOjdjbL8QXixsWjdQOxUtIQbxPwDmLp2C6ujKukyU5b3GeqtSVM%2BXaeZaPD0tXxCB0Yiqilogk%2B4r%2Fj2pnD1llRlqOzWY52Gv%2FIUeKtmTYvRhfZGeyKfk%2FZZU88Y%2BLxdSTKcZ6iz5NG%2B0Q%2BmnBip3rOGq8vwMejSU98Y43%2FJmavmNMjM%2F2MFjCavcsxm6TMcjQ5HSdgP%2FPp%2B1m3dq6F9twykYid9mVb47aiEsEZvUFo5AP1TY38F5V3gb8fqdS3MNA1xKIhdV%2B5J3GScj%2BdHPV%2BtVqibFuSd3XqlmlfQfwe%2FAE%3D&gui=q1ZKzs8tyM9LzSvxS8xNVbJSSk4sTk5MSQ3LTC1X0lHyTS3OCEotVrIy0DOE84IS89KBSqMN9AwMdYxidZScE5MzUu2VrNISc4pTdZSCElMyS4F6jA1gbJgOIwMdEwOgBp%2F8tBKg%2BpKi0tRaAA%3D%3D"><img src="./icon/Gizmo.gif"        height="192"></a>
-  <img title="Install Cascade Studio for working offline!"                          src="./icon/Installable.gif"  width="275">
+  <img title="Install AICAD for working offline!"                          src="./icon/Installable.gif"  width="275">
   <img title="Use world-class intellisense with VS Code's Text Editor!"             src="./icon/Intellisense.gif" width="275">
 </p>
 
@@ -61,7 +61,7 @@ Model code is saved to the URL upon every successful evaluation, so you can copy
 
 ## Contributing
 
-Cascade Studio is built with vanilla JavaScript and static assets. To run it locally, follow these steps:
+AICAD is built with vanilla JavaScript and static assets. To run it locally, follow these steps:
 
 1.  **Clone the repository:**
     ```bash
@@ -80,13 +80,13 @@ Cascade Studio is built with vanilla JavaScript and static assets. To run it loc
     npm start
     ```
 
-This will start a local server, and you can access Cascade Studio in your web browser at the URL provided by the `serve` command (usually `http://localhost:8000`).
+This will start a local server, and you can access AICAD in your web browser at the URL provided by the `serve` command (usually `http://localhost:8000`).
 
 Pull Requests to this repo are automatically hosted to Vercel instances, so other users will be able to test and benefit from your modifications as soon as the PR is submitted.
 
 ## Credits
 
-Cascade Studio uses:
+AICAD uses:
 
  - [opencascade.js](https://github.com/donalffons/opencascade.js) (CAD Kernel)
  - [Golden Layout](https://github.com/golden-layout/golden-layout) (Windowing System)
@@ -97,4 +97,4 @@ Cascade Studio uses:
  - [rawinflate/rawdeflate](https://github.com/dankogai/js-deflate) (URL Code Serialization)
  - [potpack](https://github.com/mapbox/potpack) (Texture Atlas Packing)
 
-Cascade Studio is maintained by [Johnathon Selstad @zalo](https://github.com/zalo)
+AICAD is maintained by [Johnathon Selstad @zalo](https://github.com/zalo) and created by Arya.

@@ -12,18 +12,18 @@ window.workerWorking = false;
 // AI Feature variables
 let keysPressed = {};
 const apiKey = 'AIzaSyDQiyvx6SaLHzHYB0Bupz6SpJk4Dxgc-1I';
-const systemPrompt = `SYSTEM PROMPT — “Cascade Studio Code Generator (World-Class Designs)”
+const systemPrompt = `SYSTEM PROMPT — “AICAD Code Generator (World-Class Designs)”
 
 ROLE
-You are a senior CAD+DFx engineer who writes **JavaScript for Cascade Studio** (OpenCascade.js) to generate high-quality, parametric, manufacturable 3D models. You output **code only** (no prose) that runs in https://zalo.github.io/CascadeStudio/. Favor clean parametric architecture, robust references, and elite industrial-design surfacing.
+You are a senior CAD+DFx engineer who writes **JavaScript for AICAD** (OpenCascade.js) to generate high-quality, parametric, manufacturable 3D models. You output **code only** (no prose) that runs in https://zalo.github.io/CascadeStudio/. Favor clean parametric architecture, robust references, and elite industrial-design surfacing.
 
 OUTPUT CONTRACT
-- Output only valid Cascade Studio JavaScript. No markdown, no backticks, no commentary.
+- Output only valid AICAD JavaScript. No markdown, no backticks, no commentary.
 - Always include:
   1) A parameter UI section (Slider/Checkbox/TextInput/Dropdown) grouped by “Dimensions”, “Features”, “Manufacturing”, “Aesthetics/Finish”, “Export”.
   2) A deterministic “build” pipeline: constants → helper funcs → profiles → features (CSG/sweeps) → fillets/chamfers → shell/thicken → detail ops (threads/knurls/text) → QA checks → final Translate().
   3) Sensible defaults (mm units). Expose mesh resolution and toggles for STL/STEP export.
-- Never require external libraries. Use Cascade Studio’s standard library and \`oc.\` (OpenCascade) namespace if needed.
+- Never require external libraries. Use Cascade Studio’s standard library and \\`oc.\\` (OpenCascade) namespace if needed.
 - Wrap risky operations in try/catch and degrade gracefully (e.g., skip failed fillet).
 
 FUNCTION REFERENCE (use exactly these helpers when applicable)
@@ -69,7 +69,7 @@ PERFORMANCE & STABILITY
 - Caching: reuse intermediate shapes; avoid recomputing profiles.
 
 QA & METADATA
-- Compute and log approximate bounding box and volume using \`oc\` helpers if available; else derive roughly from params.
+- Compute and log approximate bounding box and volume using \\`oc\\` helpers if available; else derive roughly from params.
 - Provide a \`validate()\` helper to assert: wall ≥ minWall, draft within range (if enabled), feature spacing ≥ cutter width (if CNC mode), thread depth sane, etc. If invalid, toggle a Checkbox “ShowDebug” and create a colored debug proxy (e.g., Box()) instead of failing.
 - Add an engraved Text3D() with model name + key params (optional toggle “Marking”).
 
@@ -147,7 +147,7 @@ FINAL REMINDERS
 `;
 
 let starterCode = 
-`// Welcome to Cascade Studio!   Here are some useful functions:
+`// Welcome to AICAD!   Here are some useful functions:
 //  Translate(), Rotate(), Scale(), Mirror(), Union(), Difference(), Intersection()
 //  Box(), Sphere(), Cylinder(), Cone(), Text3D(), Polygon()
 //  Offset(), Extrude(), RotatedExtrude(), Revolve(), Pipe(), Loft(), 
@@ -346,7 +346,7 @@ function initialize(projectContent = null) {
                 }
 
                 gui = new Tweakpane.Pane({
-                    title: 'Cascade Control Panel',
+                    title: 'AICAD Control Panel',
                     container: document.getElementById('guiPanel')
                 });
                 guiSeparatorAdded = false;
@@ -395,7 +395,7 @@ function initialize(projectContent = null) {
                 // to the URL depending on the current mode of the editor.
                 if (saveToURL) {
                     console.log("Saved to URL!"); //Generation Complete! 
-                    window.history.replaceState({}, 'Cascade Studio',
+                    window.history.replaceState({}, 'AICAD',
                       new URL(location.pathname + "#code=" + encode(newCode) + "&gui=" + encode(JSON.stringify(GUIState)), location.href).href
                     );
                 }
@@ -449,54 +449,58 @@ function initialize(projectContent = null) {
 
             // Handle AI Prompt Input
             const aiPromptInput = document.getElementById('ai-prompt-input');
-            aiPromptInput.addEventListener('keydown', async (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    const userPrompt = aiPromptInput.value;
-                    aiPromptInput.value = 'Generating...';
-                    aiPromptInput.disabled = true;
+            if (aiPromptInput) {
+                aiPromptInput.addEventListener('keydown', async (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const userPrompt = aiPromptInput.value;
+                        aiPromptInput.value = 'Generating...';
+                        aiPromptInput.disabled = true;
 
-                    try {
-                        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                "contents": [{
-                                    "parts": [
-                                        { "text": systemPrompt },
-                                        { "text": userPrompt }
-                                    ]
-                                }]
-                            })
-                        });
+                        try {
+                            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                    "contents": [{
+                                        "parts": [
+                                            { "text": systemPrompt },
+                                            { "text": userPrompt }
+                                        ]
+                                    }]
+                                })
+                            });
 
-                        if (!response.ok) {
-                            const errorBody = await response.text();
-                            throw new Error(`API request failed with status ${response.status}: ${errorBody}`);
+                            if (!response.ok) {
+                                const errorBody = await response.text();
+                                throw new Error(`API request failed with status ${response.status}: ${errorBody}`);
+                            }
+
+                            const data = await response.json();
+                            const generatedCode = data.candidates[0].content.parts[0].text;
+
+                            // Insert the code into the editor
+                            const position = monacoEditor.getPosition();
+                            monacoEditor.executeEdits('ai-insert', [{
+                                range: new monaco.Range(position.lineNumber, position.column, position.lineNumber, position.column),
+                                text: generatedCode
+                            }]);
+
+                        } catch (error) {
+                            console.error('Error calling AI API:', error);
+                            console.log('Failed to generate code. Please check the console for details.');
+                        } finally {
+                            aiPromptInput.value = '';
+                            aiPromptInput.disabled = false;
+                            document.getElementById('ai-prompt-container').style.display = 'none';
                         }
-
-                        const data = await response.json();
-                        const generatedCode = data.candidates[0].content.parts[0].text;
-
-                        // Insert the code into the editor
-                        const position = monacoEditor.getPosition();
-                        monacoEditor.executeEdits('ai-insert', [{
-                            range: new monaco.Range(position.lineNumber, position.column, position.lineNumber, position.column),
-                            text: generatedCode
-                        }]);
-
-                    } catch (error) {
-                        console.error('Error calling AI API:', error);
-                        console.log('Failed to generate code. Please check the console for details.');
-                    } finally {
-                        aiPromptInput.value = '';
-                        aiPromptInput.disabled = false;
-                        document.getElementById('ai-prompt-container').style.display = 'none';
                     }
-                }
-            });
+                });
+            } else {
+                console.error("AI prompt input element not found!");
+            }
         });
     });
 
@@ -596,7 +600,7 @@ function initialize(projectContent = null) {
             };
 
             // Print friendly welcoming messages
-            console.log("Welcome to Cascade Studio!");
+            console.log("Welcome to AICAD!");
             console.log("Loading CAD Kernel...");
         }
     });
@@ -756,7 +760,7 @@ async function saveProject() {
     let currentCode = monacoEditor.getValue();
     if (!file.handle) {
         file.handle = await getNewFileHandle(
-            "Cascade Studio project files",
+            "AICAD project files",
             "application/json",
             "json"
         );
@@ -790,14 +794,14 @@ const loadProject = async () => {
 
     // Load Project .json from a file
     [file.handle] = await getNewFileHandle(
-        'Cascade Studio project files',
+        'AICAD project files',
         'application/json',
         'json',
         open = true
     );
     let fileSystemFile = await file.handle.getFile();
     let jsonContent = await fileSystemFile.text();
-    window.history.replaceState({}, 'Cascade Studio','?');
+    window.history.replaceState({}, 'AICAD','?');
     initialize(projectContent=jsonContent);
     codeContainer.setTitle(file.handle.name);
     file.content = monacoEditor.getValue();
